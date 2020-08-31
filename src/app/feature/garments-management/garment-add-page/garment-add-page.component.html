@@ -1,0 +1,62 @@
+<mat-toolbar color="primary">
+    <h1>Garment Management</h1>
+    <button mat-button routerlink='/'>Home</button>
+</mat-toolbar><router-outlet></router-outlet>
+<form [formGroup]="garment_detail_form_group" class="mainContainer">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter the garment name</mat-label>
+        <input matInput class="form-control" formControlName="garmentName">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter the current date</mat-label>
+        <input matInput class="form-control" formControlName="purchaseDate" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter the material name</mat-label>
+        <input matInput class="form-control" formControlName="materialName">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter the material color</mat-label>
+        <input matInput class="form-control" formControlName="materialColor">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter the material weight</mat-label>
+        <input matInput class="example-right-align" formControlName="materialWeight" type="number" (focusout)="onWeightChange($event)">
+        <span matSuffix>kg</span>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter the material price</mat-label>
+        <input matInput class="form-contorl" formControlName="materialPrice" type="number" (focusout)="onPriceChange($event)">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Total Amount</mat-label>
+        <input matInput class="example-disable-button" formControlName="totalAmount">
+        <span matPrefix>Rs.</span>
+        <span matSuffix>.00</span>
+    </mat-form-field>
+    <br>
+    <mat-form-field *ngIf="isTotalAmountCalculated" appearance="fill">
+        <mat-label>Amount Paid</mat-label>
+        <input matInput class="example-right-align" formControlName="amountPaid" (focusout)="onPaymentChanges($event)">
+        <span matPrefix>Rs.</span>
+        <span matSuffix>.00</span>
+    </mat-form-field>
+    <br>
+    <mat-form-field *ngIf="isTotalAmountCalculated" appearance="fill">
+        <mat-label>Balance Amount</mat-label>
+        <input matInput class="example-disable-button" formControlName="balanceAmount">
+        <span matPrefix aria-disabled="true">Rs.</span>
+        <span matSuffix aria-disabled="true">.00</span>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button class="example-right-padding" (click)="onClearForm($event)" >Clear</button>
+    <button mat-raised-button color="primary" class="example-right-padding" (click)="onSave($event)">Save</button>
+</form>

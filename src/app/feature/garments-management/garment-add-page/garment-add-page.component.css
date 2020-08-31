@@ -1,0 +1,20 @@
+.mainContainer {
+    margin-left: 16px;
+    margin-top: 16px;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-right-align {
+    text-align: right;
+}
+
+.example-right-padding {
+    margin-left: 16px;
+}
+
+.example-disable-button {
+    text-align: right;
+    color: black;
+}

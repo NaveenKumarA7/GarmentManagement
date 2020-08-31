@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+    <h1>Garment Management</h1>
+    <button mat-button routerlink='/'>Home</button>
+</mat-toolbar><router-outlet></router-outlet>
+<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort matSortActive="purchaseDate" matSortDisableClear>
+        <ng-container matColumnDef="purchaseNumber">
+            <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.purchaseNumber}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="garmentName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Garment Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.garmentName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="purchaseDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Purchase Date</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.purchaseDate | date}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="materialName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Material Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.materialName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="materialColor">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Material Color</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.materialColor}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="materialWeight">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Material Weight</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.materialWeight}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="materialPrice">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Material Price per wt</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.materialPrice}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="totalAmount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Total Amount</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.totalAmount}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="balanceAmount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Balance Amount Need to Pay</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.balanceAmount}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="columnHeader"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnHeader;"></mat-row>
+    </mat-table>
+    <mat-paginator [length]="dataSource.garmentLength" [pageSize]="2" [pageSizeOptions]="[2, 5, 10]"></mat-paginator>
+</div>
