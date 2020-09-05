@@ -1,19 +1,23 @@
-<nav class="navbar navbar-expand-sm bg-light">  
-  <div class="container-fluid">  
-    <ul class="navbar-nav">  
-      <li class="nav-item">  
-        <a routerLink="garment-management/add-page" class="nav-link" routerLinkActive="active">  
-          Create Product  
-        </a>  
-      </li>  
-      <li class="nav-item">  
-        <a routerLink="garment-management/dashboard-page" class="nav-link" routerLinkActive="active">  
-          Products  
-        </a>  
-      </li>   
-    </ul>  
-  </div>  
-</nav>  
-<div class="container">  
-  <router-outlet></router-outlet>  
-</div>  
+<mat-toolbar color="primary">
+  <button mat-icon-button>
+    <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+  </button>
+  <h1>Garment Management</h1>
+  <span class="menu-spacer"></span>
+  <a mat-button routerlink="garment-management/dashboard-page">Home</a>
+</mat-toolbar>
+<mat-sidenav-container>  
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-nav-list>
+      <mat-list-item routerLink="garment-management/add-page">Create Product</mat-list-item>
+      <mat-list-item routerLink="garment-management/dashboard-page">Products</mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>  
+    <div style="height: 88vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>   
+</mat-sidenav-container>  
+ 
+

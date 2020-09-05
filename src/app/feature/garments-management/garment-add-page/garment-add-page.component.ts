@@ -89,16 +89,13 @@ export class GarmentAddPageComponent implements OnInit, OnDestroy {
   }
 
   onClearForm(event: any) {
-    alert("Clearing Data");
     this.setInitialValue();
   }
 
   onSave(event: any) {
-    alert("Saving Data");
     this.garmentDetailContents.patchFormValue(this.garment_detail_form_group);
     this.garmentApiService.insertGarmentDetail(this.garmentDetailContents.getFormValue())
       .subscribe(transactionStatus => {
-        alert(transactionStatus + ' / Data Inserted....');
         if (transactionStatus === 'Inserted') {
           this.router.navigate(['../success-page'], { replaceUrl: true, relativeTo: this.activeRouter });
         }
